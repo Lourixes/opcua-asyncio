@@ -531,11 +531,10 @@ class Node:
 
     async def get_path(self, max_length: int = 20, as_string: bool = False) -> list[Node] | list[str]:
         """
-        Attempt to find path of node from root node and return it as a list of Nodes.
-        There might several possible paths to a node, this function will return one
-        Some nodes may be missing references, so this method may
-        return an empty list
-        Since address space may have circular references, a max length is specified
+        Attempt to find the path of the node from the root node and return it as a list of Nodes.
+        There may be several possible paths to a node. This function returns only one of them.
+        Some nodes may be missing references, so this method may return an empty list.
+        Since the address space may contain circular references, a max length is specified.
         """
         path = await self._get_path(max_length)
         nodes = [Node(self.session, ref.NodeId) for ref in path]
@@ -546,12 +545,10 @@ class Node:
 
     async def _get_path(self, max_length: int = 20) -> list[ua.ReferenceDescription]:
         """
-        Attempt to find path of node from root node and return it as a list of Nodes.
-        There might several possible paths to a node, this function will return one
-        Some nodes may be missing references, so this method may
-        return an empty list
-        Since address space may have circular references, a max length is specified
-
+        Attempt to find the path of the node from the root node and return it as a list of Nodes.
+        There may be several possible paths to a node. This function returns only one of them.
+        Some nodes may be missing references, so this method may return an empty list.
+        Since the address space may contain circular references, a max length is specified.
         """
         path = []
         node = self
